@@ -159,10 +159,10 @@ export abstract class BaseMysqlService {
       dataFind = find.offset((page - 1) * size).limit(size);
     }
     if (autoSort) {
-      find.addOrderBy(order, sort.toUpperCase());
+      dataFind.addOrderBy(order, sort.toUpperCase());
     }
     return {
-      list: await dataFind.getMany(),
+      list: await dataFind.execute(),
       pagination: {
         page: parseInt(page),
         size: parseInt(size),
